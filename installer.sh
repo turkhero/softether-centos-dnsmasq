@@ -21,7 +21,7 @@ HUB_PASSWORD=${SERVER_PASSWORD}
 USER_PASSWORD=${SERVER_PASSWORD}
 TARGET="/usr/local/"
 
-yum update
+yum update -y && yum groupinstall "Development Tools" -y && yum install kernel-devel -y
 yum -y install wget dnsmasq expect gcc zlib-devel openssl-devel readline-devel ncurses-devel
 sleep 2
 wget https://www.softether-download.com/files/softether/v4.34-9745-rtm-2020.04.05-tree/Linux/SoftEther_VPN_Server/64bit_-_Intel_x64_or_AMD64/softether-vpnserver-v4.34-9745-rtm-2020.04.05-linux-x64-64bit.tar.gz
