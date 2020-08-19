@@ -1,5 +1,5 @@
 #!/bin/bash
-# Softether VPN Bridge with dnsmasq for Ubuntu
+# Softether VPN Bridge with dnsmasq for Centos
 # References:
 # - https://gist.github.com/abegodong/15948f26c8683ab1f5be
 SERVER_IP=""
