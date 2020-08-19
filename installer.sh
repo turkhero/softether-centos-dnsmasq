@@ -37,7 +37,7 @@ sysctl --system
 wget -P /etc/init.d https://raw.githubusercontent.com/turkhero/softether-centos-dnsmasq/master/vpnserver
 sed -i "s/\[SERVER_IP\]/${SERVER_IP}/g" /etc/init.d/vpnserver
 chmod 755 /etc/init.d/vpnserver && /etc/init.d/vpnserver start
-update-rc.d vpnserver defaults
+systemctl enable vpnserver
 ${TARGET}vpnserver/vpncmd localhost /SERVER /CMD ServerPasswordSet ${SERVER_PASSWORD}
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD HubCreate ${HUB} /PASSWORD:${HUB_PASSWORD}
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /HUB:${HUB} /CMD UserCreate ${USER} /GROUP:none /REALNAME:none /NOTE:none
