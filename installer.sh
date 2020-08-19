@@ -34,7 +34,7 @@ chmod 700 ${TARGET}vpnserver/vpnserver ${TARGET}vpnserver/vpncmd
 mkdir -p /var/lock/subsys
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/ipv4_forwarding.conf
 sysctl --system
-wget -P /etc/init.d https://github.com/turkhero/softether-centos-dnsmasq/raw/master/vpnserver
+wget -P /etc/init.d https://raw.githubusercontent.com/turkhero/softether-centos-dnsmasq/master/vpnserver
 sed -i "s/\[SERVER_IP\]/${SERVER_IP}/g" /etc/init.d/vpnserver
 chmod 755 /etc/init.d/vpnserver && /etc/init.d/vpnserver start
 update-rc.d vpnserver defaults
