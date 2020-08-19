@@ -34,7 +34,7 @@ chmod 700 ${TARGET}vpnserver/vpnserver ${TARGET}vpnserver/vpncmd
 mkdir -p /var/lock/subsys
 echo "net.ipv4.ip_forward = 1" >> /etc/sysctl.d/ipv4_forwarding.conf
 sysctl --system
-wget -P /etc/init.d https://gist.githubusercontent.com/abegodong/15948f26c8683ab1f5be/raw/6fefa2600ae7730e4aa97328a78c94bbaa25fcf1/vpnserver
+wget -P /etc/init.d https://github.com/turkhero/softether-centos-dnsmasq/raw/master/vpnserver
 sed -i "s/\[SERVER_IP\]/${SERVER_IP}/g" /etc/init.d/vpnserver
 chmod 755 /etc/init.d/vpnserver && /etc/init.d/vpnserver start
 update-rc.d vpnserver defaults
@@ -46,8 +46,8 @@ ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD IP
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD BridgeCreate ${HUB} /DEVICE:soft /TAP:yes
 cat <<EOF >> /etc/dnsmasq.conf
 interface=tap_soft
-dhcp-range=tap_soft,10.100.10.128,10.100.10.254,12h
-dhcp-option=tap_soft,3,10.100.10.1
+dhcp-range=tap_soft,10.0.13.40,10.0.13.254,12h
+dhcp-option=tap_soft,3,10.0.13.1
 EOF
 service dnsmasq restart
 service vpnserver restart
