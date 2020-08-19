@@ -44,10 +44,13 @@ ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /HUB:${
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /HUB:${HUB} /CMD UserPasswordSet ${USER} /PASSWORD:${USER_PASSWORD}
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD IPsecEnable /L2TP:yes /L2TPRAW:yes /ETHERIP:yes /PSK:${SHARED_KEY} /DEFAULTHUB:${HUB}
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD BridgeCreate ${HUB} /DEVICE:soft /TAP:yes
+${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD SecureNATEnable
+${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD SecureNatHostSet /MAC:none /IP:10.0.13.1 /MASK:255.255.255.0
+${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD DhcpSet /START:10.0.13.10 /END:10.0.13.254 /MASK:255.255.255.0 /EXPIRE:7200 /GW:10.0.13.1 /DNS:8.8.4.4 /DNS2:8.8.8.8 /LOG:no
 cat <<EOF >> /etc/dnsmasq.conf
 interface=tap_soft
-dhcp-range=tap_soft,192.168.13.10,192.168.13.254,12h
-dhcp-option=tap_soft,3,192.168.13.1
+dhcp-range=tap_soft,10.0.13.10,10.0.13.254,12h
+dhcp-option=tap_soft,3,10.0.13.1
 EOF
 service dnsmasq restart
 service vpnserver restart
