@@ -3,8 +3,8 @@
 # description: SoftEther VPN Server
 DAEMON=/usr/local/vpnserver/vpnserver
 LOCK=/var/lock/subsys/vpnserver
-TAP_ADDR=192.168.13.1
-TAP_NETWORK=192.168.13.0/24
+TAP_ADDR=10.0.13.1
+TAP_NETWORK=10.0.13.0/24
 SERVER_IP=[SERVER_IP]
 test -x $DAEMON || exit 0
 case "$1" in
