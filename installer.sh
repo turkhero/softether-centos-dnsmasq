@@ -46,8 +46,8 @@ ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD IP
 ${TARGET}vpnserver/vpncmd localhost /SERVER /PASSWORD:${SERVER_PASSWORD} /CMD BridgeCreate ${HUB} /DEVICE:soft /TAP:yes
 cat <<EOF >> /etc/dnsmasq.conf
 interface=tap_soft
-dhcp-range=tap_soft,10.0.13.40,10.0.13.254,12h
-dhcp-option=tap_soft,3,10.0.13.1
+dhcp-range=tap_soft,192.168.13.10,192.168.13.254,12h
+dhcp-option=tap_soft,3,192.168.13.1
 EOF
 service dnsmasq restart
 service vpnserver restart
